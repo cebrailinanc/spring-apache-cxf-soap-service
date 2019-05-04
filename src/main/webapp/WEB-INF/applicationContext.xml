@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:core="http://cxf.apache.org/core"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
+
+
+	<jaxws:endpoint id="CalculateAreaEndpoint"
+		implementor="com.cbrl.spring.apache.cxf.CalculateImpl"
+		address="/CalculateArea">
+	</jaxws:endpoint>
+
+	<jaxws:endpoint id="HelloWorldEndpoint"
+		implementor="com.cbrl.spring.apache.cxf.HelloWorldImpl"
+		address="/HelloWorld">
+	</jaxws:endpoint>
+
+	<jaxws:endpoint id="studentServiceEndPoint"
+		implementor="com.cbrl.spring.apache.cxf.StudentInformationImpl"
+		address="/StudentInformation">
+	</jaxws:endpoint>
+
+	<!--Nesne üretimi springe devredilmesi için bean tanımları yapıldı 
+	StudentInformationUseBeanImlp sinifindaki listeye nesneler enjekte edilecek.-->
+
+	<bean id="Student1" class="com.cbrl.spring.apache.cxf.Student">
+		<property name="studentNumber" value="33" />
+		<property name="name" value="Cebrail" />
+		<property name="surName" value="Elazığ" />
+		<property name="gender" value="Male" />
+		<property name="department" value="Bilgisayar Mühendisliği" />
+	</bean>
+	<bean id="Student2" class="com.cbrl.spring.apache.cxf.Student">
+		<property name="studentNumber" value="34" />
+		<property name="name" value="Ali" />
+		<property name="surName" value="Konya" />
+		<property name="gender" value="Male" />
+		<property name="department" value="Harita Mühendisliği" />
+	</bean>
+	<bean id="Student3" class="com.cbrl.spring.apache.cxf.Student">
+		<property name="studentNumber" value="35" />
+		<property name="name" value="Ayşe" />
+		<property name="surName" value="Veli" />
+		<property name="gender" value="Female" />
+		<property name="department" value="Hemşire" />
+	</bean>
+	<bean id="Student4" class="com.cbrl.spring.apache.cxf.Student">
+		<property name="studentNumber" value="36" />
+		<property name="name" value="Hakan" />
+		<property name="surName" value="Muhafız" />
+		<property name="gender" value="Male" />
+		<property name="department" value="Elektrik Mühendisliği" />
+	</bean>
+
+	<bean id="studentService"
+		class="com.cbrl.spring.apache.cxf.StudentInformationUseBeanImlp">
+		<property name="students">
+			<list>
+				<ref bean="Student1" />
+				<ref bean="Student2" />
+				<ref bean="Student3" />
+				<ref bean="Student4" />
+			</list>
+		</property>
+
+	</bean>
+
+	<jaxws:endpoint id="studentServiceUseBeanEndPoint"
+		implementor="#studentService" address="/StudentInformationUseBean">
+	</jaxws:endpoint>
+
+</beans>

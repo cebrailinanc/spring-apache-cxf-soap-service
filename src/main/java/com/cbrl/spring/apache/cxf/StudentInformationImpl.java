@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService(endpointInterface = "com.cbrl.spring.apache.cxf.IStudentInformation")
@@ -49,11 +50,11 @@ public class StudentInformationImpl implements IStudentInformation {
 	}
 
 	@WebMethod
-	public Student findStudent(Integer studentNumber) {
+	public Student findStudent(@WebParam(name = "studentNumber") Integer studentNumber) {
 		return students.stream().filter(student -> student.getStudentNumber().equals(studentNumber)).findAny()
 				.orElse(null);
 	}
-
+	
 	public List<Student> getAllStudent() {
 		return students;
 	}

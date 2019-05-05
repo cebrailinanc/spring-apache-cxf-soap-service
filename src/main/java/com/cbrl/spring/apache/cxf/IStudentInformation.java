@@ -10,7 +10,7 @@ import javax.jws.WebService;
 public interface IStudentInformation {
 
 	@WebMethod
-	Student findStudent(@WebParam Integer studentNumber);
-
+	Student findStudent(@WebParam(name = "studentNumber") Integer studentNumber);
+    
 	List<Student> getAllStudent();
 }

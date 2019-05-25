@@ -8,8 +8,8 @@ import javax.jws.WebService;
 
 @WebService
 public interface IStudentInformation {
-
-	@WebMethod
+	
+	@WebMethod(operationName="findStudentMetot")
 	Student findStudent(@WebParam(name = "studentNumber") Integer studentNumber);
     
 	List<Student> getAllStudent();

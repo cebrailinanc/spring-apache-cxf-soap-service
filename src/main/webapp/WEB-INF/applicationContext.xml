@@ -73,5 +73,11 @@
 	<jaxws:endpoint id="studentServiceUseBeanEndPoint"
 		implementor="#studentService" address="/StudentInformationUseBean">
 	</jaxws:endpoint>
+	
+	
+	<jaxws:endpoint id="SearchComputerEndpoint"
+		implementor="com.cbrl.spring.apache.cxf.search.SearchComputerImpl"
+		address="/SearchComputer">
+	</jaxws:endpoint>
 
 </beans>

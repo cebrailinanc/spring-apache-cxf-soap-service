@@ -9,7 +9,7 @@ Contract-last ile önce sınıflar yazılır, sonra CXF kütüphanesi kullanıla
 - Request Responselar oluşturulur.
 - Interface'in implementasyonu yapılır.(SearchComputerImpl)
 - Servise dışardan ulaşıması için endpoint tanımı yapılır. applicationContext.xml dosyasında bu tanım yapılır.
-- web.xml dosyasında servlet olusturulur. gelen isteği endpointe aktarılması için.
+- web.xml dosyasında servlet oluşturulur. Gelen istekler, servlet ile endpointe aktarılır.
 
 ### Servislerin Listelenmesi
 

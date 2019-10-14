@@ -2,7 +2,6 @@ package com.cbrl.spring.apache.cxf.search;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.jws.WebService;
 
@@ -23,8 +22,11 @@ public class SearchComputerImpl implements ISearchComputer {
 				"Quad-Core Processor Up to 2.24Ghz"));
 		list.add(new ComputerDTO("ASUS TUF 17.3\" FHD LED", ComputerBrands.ASUS, "15.6", "Intel Core i7-8750H "));
 		ResponseGetComputer response = new ResponseGetComputer();
-		response.setSearchList(list.stream().filter(item -> item.getBrands().equals(request.getBrands()))
-				.collect(Collectors.toList()));
+		response.setSearchList(new ArrayList<ComputerDTO>());
+		for (ComputerDTO dto : list) {
+			if (dto.getBrands().equals(request.getBrands()))
+				response.getSearchList().add(dto);
+		}
 		return response;
 	}
 

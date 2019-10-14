@@ -51,10 +51,14 @@ public class StudentInformationImpl implements IStudentInformation {
 
 	@WebMethod
 	public Student findStudent(@WebParam(name = "studentNumber") Integer studentNumber) {
-		return students.stream().filter(student -> student.getStudentNumber().equals(studentNumber)).findAny()
-				.orElse(null);
+		for (Student dto : students) {
+			if (dto.getStudentNumber().equals(studentNumber)) {
+				return dto;
+			}
+		}
+		return null;
 	}
-	
+
 	public List<Student> getAllStudent() {
 		return students;
 	}
